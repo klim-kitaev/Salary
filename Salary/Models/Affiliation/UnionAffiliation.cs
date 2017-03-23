@@ -47,17 +47,18 @@ namespace Payroll.Models
 
         public double CalculateDeductions(PayCheck paycheck)
         {
+            double service_charges = GetServiceCharge(paycheck.PayPeriodEndDate)==null ? 0 : GetServiceCharge(paycheck.PayPeriodEndDate).Amount;
             double totalDues = 0;
             int fridays = NumberOfFridaysInPayPeriod(paycheck.PayPeriodStartDate, paycheck.PayPeriodEndDate);
             totalDues = dues * fridays;
-            return totalDues;
+            return service_charges + totalDues;
         }
 
         private int NumberOfFridaysInPayPeriod(DateTime payPeriodStart, DateTime payPeriodEnd)
         {
             int fridays = 0;
             for (DateTime day = payPeriodStart;
-            day <= payPeriodEnd; day.AddDays(1))
+            day <= payPeriodEnd;day = day.AddDays(1))
             {
                 if (day.DayOfWeek == DayOfWeek.Friday)
                     fridays++;

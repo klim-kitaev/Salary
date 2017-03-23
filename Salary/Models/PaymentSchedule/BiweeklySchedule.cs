@@ -11,7 +11,7 @@ namespace Payroll.Models
         public override DateTime GetPayPeriodStartDate(DateTime payDate)
         {
             //найдем ближаюшую пятницу для оплаты
-            var nearest_friday = GetNeedFridays(payDate).Where(p => p > payDate).DefaultIfEmpty().Min();
+            var nearest_friday = GetNeedFridays(payDate).Where(p => p >= payDate).DefaultIfEmpty().Min();
             //Если таких дней не найдено, то вернем день после последней пятницы
             if (nearest_friday == default(DateTime))
             {

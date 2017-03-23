@@ -10,10 +10,10 @@ namespace Payroll.Models
     {
         public override DateTime GetPayPeriodStartDate(DateTime payDate)
         {
-            //Вырнем первый понедельник до текущей даты
+            //Вырнем первый субботу до текущей даты
             for (int i = 1; i <= 7; i++)
             {
-                if (payDate.DayOfWeek == DayOfWeek.Monday)
+                if (payDate.DayOfWeek == DayOfWeek.Saturday)
                     return payDate;
                 payDate = payDate.AddDays(-1);
             }
