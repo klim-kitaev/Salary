@@ -15,9 +15,15 @@ namespace Payroll.Models
             return m1 != m2;
         }
 
+
         public override bool IsPayDate(DateTime payDate)
         {
             return IsLastDayOfMonth(payDate);
+        }
+
+        public override DateTime GetPayPeriodStartDate(DateTime payDate)
+        {
+            return new DateTime(payDate.Year, payDate.Month, 1);
         }
     }
 }

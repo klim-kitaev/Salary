@@ -47,10 +47,10 @@ namespace Payroll.Models
 
         public override double CalculatePay(PayCheck paycheck)
         {
-            double totalPay = IsNeedSalaryPay(paycheck.PayDate) ? salary / 2 : 0;
+            double totalPay = IsNeedSalaryPay(paycheck.PayPeriodEndDate) ? salary / 2 : 0;
             foreach (var receipt in reciptes)
             {
-                if (IsInPayPeriod(receipt, paycheck.PayDate))
+                if (IsInPayPeriod(receipt.Date, paycheck))
                 {
                     totalPay += (receipt.Amount * commissionRate);
                 }
@@ -58,13 +58,6 @@ namespace Payroll.Models
             return totalPay;
         }
 
-        private bool IsInPayPeriod(SalesReceipt receipt,DateTime payPeriod)
-        {
-            DateTime payPeriodEndDate = payPeriod;
-            DateTime payPeriodStartDate = payPeriod.AddDays(-13);
-            return receipt.Date <= payPeriodEndDate &&
-            receipt.Date >= payPeriodStartDate;
-        }
 
         private bool IsNeedSalaryPay(DateTime payDate)
         {

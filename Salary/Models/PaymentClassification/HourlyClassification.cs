@@ -40,7 +40,7 @@ namespace Payroll.Models
             double totalPay = 0.0;
             foreach (TimeCard timeCard in timecards)
             {
-                if (IsInPayPeriod(timeCard, paycheck.PayDate))
+                if (IsInPayPeriod(timeCard.Date, paycheck))
                     totalPay += CalculatePayForTimeCard(timeCard);
             }
             return totalPay;

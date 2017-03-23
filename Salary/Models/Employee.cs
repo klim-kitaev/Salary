@@ -32,9 +32,9 @@ namespace Payroll.Models
             }
         }
 
-        internal DateTime GetPayPeriodStartDate(DateTime payDate)
+        internal DateTime GetPayPeriodStartDate(DateTime date)
         {
-            throw new NotImplementedException();
+            return schedule.GetPayPeriodStartDate(date);
         }
 
         internal bool IsPayDate(DateTime payDate)

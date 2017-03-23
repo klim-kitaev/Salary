@@ -330,7 +330,7 @@ namespace Payroll.Test
             pt.Execute();
             PayCheck pc = pt.GetPaycheck(empId);
             Assert.IsNotNull(pc);
-            Assert.AreEqual(payDate, pc.PayDate);
+            Assert.AreEqual(payDate, pc.PayPeriodEndDate);
             Assert.AreEqual(1000.00, pc.GrossPay, .001);
             Assert.AreEqual("Hold", pc.GetField("Disposition"));
             Assert.AreEqual(0.0, pc.Deductions, .001);
@@ -463,7 +463,7 @@ namespace Payroll.Test
         {
             PayCheck pc = pt.GetPaycheck(empid);
             Assert.IsNotNull(pc);
-            Assert.AreEqual(payDate, pc.PayDate);
+            Assert.AreEqual(payDate, pc.PayPeriodEndDate);
             Assert.AreEqual(pay, pc.GrossPay, .001);
             Assert.AreEqual("Hold", pc.GetField("Disposition"));
             Assert.AreEqual(0.0, pc.Deductions, .001);
@@ -474,7 +474,7 @@ namespace Payroll.Test
         {
             PayCheck pc = pt.GetPaycheck(empid);
             Assert.IsNotNull(pc);
-            Assert.AreEqual(payDate, pc.PayDate);
+            Assert.AreEqual(payDate, pc.PayPeriodEndDate);
             Assert.AreEqual(pay, pc.GrossPay, .001);
             Assert.AreEqual("Hold", pc.GetField("Disposition"));
             Assert.AreEqual(0.0, pc.Deductions, .001);
